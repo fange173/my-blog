@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>使用HTML的drag和drop实现拖拽功能</title>
+    <url>/my-blog/2022/03/04/%E4%BD%BF%E7%94%A8HTML%E7%9A%84drag%E5%92%8Cdrop%E5%AE%9E%E7%8E%B0%E6%8B%96%E6%8B%BD%E5%8A%9F%E8%83%BD/</url>
+    <content><![CDATA[<h1 id="1-HTML原生的drag和drop"><a href="#1-HTML原生的drag和drop" class="headerlink" title="1. HTML原生的drag和drop"></a>1. HTML原生的drag和drop</h1><p>需要注意的是，需要被拖动的元素必须要设置 draggable=‘true’。</p>
+<ul>
+<li>drag：拖动元素，是将html元素从页面上拖起，它的事件如下：</li>
+<li>draggable：设置html 元素为可拖动元素，值为true；</li>
+<li>ondragstart ：当用户单击元素，并开始拖动时触发事件；</li>
+<li>ondrag ：拖动中触发事件；</li>
+<li>ondragend ：完成拖动后触发事件。</li>
+<li>drop：释放元素，是放拖动起来的元素进入到目标区域中的功能，事件如下：</li>
+<li>ondragenter ：拖起来的元素进入到目标区域中时触发事件；</li>
+<li>ondragover ：拖动元素在目标区域中移动时触发事件；</li>
+<li>ondragleave ：当拖动元素离开目标区域时触发事件；</li>
+<li>ondrop ：拖动元素在目标区域中 释放鼠标时触发。</li>
+</ul>
+<h1 id="2-在Vue中使用的示例"><a href="#2-在Vue中使用的示例" class="headerlink" title="2. 在Vue中使用的示例"></a>2. 在Vue中使用的示例</h1><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span> @<span class="attr">drop</span>=<span class="string">&quot;drop($event)&quot;</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">dragover</span>=<span class="string">&quot;allowDrop($event)&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-tag</span> <span class="attr">v-for</span>=<span class="string">&quot;(tag, index) in targetList&quot;</span>&gt;</span>&#123;&#123;tag.name&#125;&#125;<span class="tag">&lt;/<span class="name">el-tag</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-tag</span> <span class="attr">type</span>=<span class="string">&quot;success&quot;</span> <span class="attr">effect</span>=<span class="string">&quot;dark&quot;</span> <span class="attr">style</span>=<span class="string">&quot;margin-right: 6px;&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">v-for</span>=<span class="string">&quot;(item, idx) in list&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">:key</span>=<span class="string">&quot;idx&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">draggable</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">    @<span class="attr">dragstart.native</span>=<span class="string">&quot;dragStart($event, item)&quot;</span>&gt;</span>&#123;&#123;item.name&#125;&#125;<span class="tag">&lt;/<span class="name">el-tag</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="3-注意事项"><a href="#3-注意事项" class="headerlink" title="3. 注意事项"></a>3. 注意事项</h1><p>在vue中使用时事件名的变化；</p>
+<p>如果在第三方组件中使用拖拽事件时，需要加.native；</p>
+<p>我们要做的是 把 一张表 中的 基础字段和表单字段 映射到另一个表的 基础字段和表单字段中，字段分为多列和单列，在做映射的时候，单列只能映射单列，多列只能映射多列。</p>
+<p><strong>具体操作：</strong></p>
+<ol>
+<li>映射表中的数据 和 备选表中的数据分别放在两个 list 数组中</li>
+<li>当拖动备选表中的数据时，将当前拖动的元素和位置放置（inde）到一个备用元素和备用位置（inde）中</li>
+<li>当要释放备选表元素时，把备用元素根据备用位置中的下标放置在映射表的相应位置中，然后把备用表中的对应数据清除掉</li>
+<li>当映射表中的数据相互拖动时，也是同样的道理 ，这样，我们就做到了只操作数据而不操作dom</li>
+</ol>
+<h1 id="4-参考链接："><a href="#4-参考链接：" class="headerlink" title="4. 参考链接："></a><strong>4. 参考链接：</strong></h1><ul>
+<li><a href="https://blog.csdn.net/qq_35257117/article/details/103309079">在 vue中使用 html5 的 drag和 drop 拖拽功能_让时光到此为止。的博客-CSDN博客_vue-drag-drop</a></li>
+<li>ondragstart 事件 <a href="https://www.runoob.com/jsref/event-ondragstart.html">https://www.runoob.com/jsref/event-ondragstart.html</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+</search>
